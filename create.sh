@@ -53,7 +53,7 @@ cp "$KS" $TMPDIR/kickstart/isolinux/ks/ks.cfg
 # update the isolinux.cfg
 sed -i 's/timeout 600/timeout 50/g' $TMPDIR/kickstart/isolinux/isolinux.cfg
 sed -i '/menu default/d' $TMPDIR/kickstart/isolinux/isolinux.cfg
-sed -i '/label linux/i label custom\n  menu label ^Install Custom CentOS 7\n  menu default\n  kernel vmlinuz\n  append initrd=initrd.img inst.ks=hd:LABEL=CentOS\\x207\\x20x86_64:/ks/ks.cfg inst.stage2=hd:LABEL=CentOS\\x207\\x20x86_64 quiet\n\n' $TMPDIR/kickstart/isolinux/isolinux.cfg
+sed -i "/label linux/i label custom\n  menu label ^Install ${2%.cfg} CentOS 7\n  menu default\n  kernel vmlinuz\n  append initrd=initrd.img inst.ks=hd:LABEL=CentOS\\x207\\x20x86_64:/ks/ks.cfg inst.stage2=hd:LABEL=CentOS\\x207\\x20x86_64 quiet\n\n" $TMPDIR/kickstart/isolinux/isolinux.cfg
 
 # generate the iso
 pushd $TMPDIR/kickstart || exit 1
